@@ -179,6 +179,7 @@ bsb)
 	ucidef_set_led_default "sys" "SYS" "$board:red:sys" "1"
 	;;
 bullet-m|\
+bullet-m-xw|\
 loco-m-xw|\
 nanostation-m|\
 nanostation-m-xw|\
@@ -252,6 +253,7 @@ cf-e530n)
 	;;
 cpe210|\
 cpe210-v2|\
+cpe210-v3|\
 cpe510|\
 wbs210|\
 wbs510)
@@ -262,7 +264,8 @@ wbs510)
 	ucidef_set_led_rssi "rssihigh" "RSSIHIGH" "tp-link:green:link4" "wlan0" "76" "100" "-75" "13"
 
 	case "$board" in
-	cpe210-v2)
+	cpe210-v2|\
+	cpe210-v3)
 		ucidef_set_led_netdev "lan" "LAN" "tp-link:green:lan0" "eth0"
 		;;
 	*)
@@ -670,7 +673,8 @@ rb-2011l|\
 rb-2011uas|\
 rb-2011uas-2hnd|\
 rb-2011uias|\
-rb-2011uias-2hnd)
+rb-2011uias-2hnd|\
+rb-2011uias-2hnd-r2)
 	ucidef_set_led_switch "eth6" "ETH6" "rb:green:eth6" "switch1" "0x20"
 	ucidef_set_led_switch "eth7" "ETH7" "rb:green:eth7" "switch1" "0x10"
 	ucidef_set_led_switch "eth8" "ETH8" "rb:green:eth8" "switch1" "0x08"

@@ -48,6 +48,7 @@ define Build/uImageArcher
 endef
 
 define Device/tplink
+  DEVICE_VENDOR := TP-Link
   TPLINK_HWREV := 0x1
   TPLINK_HEADER_VERSION := 1
   LOADER_TYPE := gz
@@ -99,8 +100,9 @@ endef
 
 define Device/tplink-safeloader
   $(Device/tplink)
-  KERNEL := kernel-bin | append-dtb | lzma | tplink-v1-header
-  IMAGE/sysupgrade.bin := append-rootfs | tplink-safeloader sysupgrade | append-metadata
+  KERNEL := kernel-bin | append-dtb | lzma | tplink-v1-header -O
+  IMAGE/sysupgrade.bin := append-rootfs | tplink-safeloader sysupgrade | \
+    append-metadata | check-size $$$$(IMAGE_SIZE)
   IMAGE/factory.bin := append-rootfs | tplink-safeloader factory
 endef
 

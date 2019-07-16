@@ -1,16 +1,16 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ath10k-ct
-PKG_RELEASE=3
+PKG_RELEASE=1
 
 PKG_LICENSE:=GPLv2
 PKG_LICENSE_FILES:=
 
 PKG_SOURCE_URL:=https://github.com/greearb/ath10k-ct.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_DATE:=2019-02-28
-PKG_SOURCE_VERSION:=9360f389234a58f742c6cb3f8eea5a419c7523f6
-PKG_MIRROR_HASH:=7fa9ec0e298767b6dfaa9486e5f316cd03af82fc9d45066dbd80fca32a06b41f
+PKG_SOURCE_DATE:=2019-06-13
+PKG_SOURCE_VERSION:=a045b1ce61fe0908468c019e17a3848f7842c927
+PKG_MIRROR_HASH:=d5e37e129f1c55517461fec491804c52dca27bb3cae96f077ccbe6e1b6a5f834
 
 # Build the 4.19 ath10k-ct driver version.  Other options are "-4.16", or
 # leave un-defined for 4.7 kernel.  Probably this should match as closely as
