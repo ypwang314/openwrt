@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-/dts-v1/;
 
 #include "mt7620a.dtsi"
 
@@ -21,30 +20,29 @@
 		compatible = "gpio-leds";
 
 		led_power: power {
-			label = "wn-ac1167gr:green:power";
+			label = "green:power";
 			gpios = <&gpio0 7 GPIO_ACTIVE_LOW>;
 			default-state = "on";
 		};
 
 		wlan2g {
-			label = "wn-ac1167gr:green:wlan2g";
+			label = "green:wlan2g";
 			gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
 		};
 
 		notification {
-			label = "wn-ac1167gr:green:notification";
+			label = "green:notification";
 			gpios = <&gpio0 11 GPIO_ACTIVE_LOW>;
 		};
 
 		wlan5g {
-			label = "wn-ac1167gr:green:wlan5g";
+			label = "green:wlan5g";
 			gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
 		};
 	};
 
 	keys {
-		compatible = "gpio-keys-polled";
-		poll-interval = <20>;
+		compatible = "gpio-keys";
 
 		wps {
 			label = "wps";
@@ -92,8 +90,8 @@
 				read-only;
 			};
 
-			Factory: partition@40000 {
-				label = "Factory";
+			factory: partition@40000 {
+				label = "factory";
 				reg = <0x40000 0x8000>;
 				read-only;
 			};
@@ -140,7 +138,8 @@
 &ethernet {
 	pinctrl-names = "default";
 	pinctrl-0 = <&rgmii1_pins &mdio_pins>;
-	mtd-mac-address = <&Factory 0x4>;
+
+	mtd-mac-address = <&factory 0x4>;
 
 	port@5 {
 		status = "okay";
@@ -185,12 +184,10 @@
 	};
 };
 
-&pinctrl {
-	state_default: pinctrl0 {
-		gpio {
-			ralink,group = "i2c", "uartf";
-			ralink,function = "gpio";
-		};
+&state_default {
+	gpio {
+		groups = "i2c", "uartf";
+		function = "gpio";
 	};
 };
 
@@ -207,5 +204,5 @@
 };
 
 &wmac {
-	ralink,mtd-eeprom = <&Factory 0x0>;
+	ralink,mtd-eeprom = <&factory 0x0>;
 };

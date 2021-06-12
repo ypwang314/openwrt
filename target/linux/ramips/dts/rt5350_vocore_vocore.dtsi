@@ -10,6 +10,7 @@
 		led-failsafe = &led_status;
 		led-running = &led_status;
 		led-upgrade = &led_status;
+		label-mac-device = &ethernet;
 	};
 
 	gpio-export {
@@ -143,13 +144,13 @@
 
 		led_status: status {
 			/* UARTF_RXD */
-			label = "vocore:green:status";
+			label = "green:status";
 			gpios = <&gpio0 10 GPIO_ACTIVE_HIGH>;
 		};
 
 		eth {
 			/* UARTF_DTR_N */
-			label = "vocore:orange:eth";
+			label = "orange:eth";
 			gpios = <&gpio0 11 GPIO_ACTIVE_HIGH>;
 		};
 	};
@@ -163,12 +164,10 @@
 	status = "okay";
 };
 
-&pinctrl {
-	state_default: pinctrl0 {
-		gpio {
-			ralink,group = "jtag", "uartf", "led";
-			ralink,function = "gpio";
-		};
+&state_default {
+	gpio {
+		groups = "jtag", "uartf", "led";
+		function = "gpio";
 	};
 };
 
@@ -182,15 +181,7 @@
 };
 
 &wmac {
-	ralink,mtd-eeprom = <&factory 0>;
-};
-
-&ehci {
-	status = "okay";
-};
-
-&ohci {
-	status = "okay";
+	ralink,mtd-eeprom = <&factory 0x0>;
 };
 
 &spi1 {
